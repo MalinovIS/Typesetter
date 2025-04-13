@@ -9,6 +9,9 @@ import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
+    private var timer: Timer?
+    private var remainingTime: Int = 180
+    
     private lazy var instructionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -27,7 +30,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         label.font = UIFont.monospacedSystemFont(ofSize: 20, weight: .regular)
         label.textColor = .label
         label.textAlignment = .left
-        label.numberOfLines = 0
+        label.numberOfLines = 1
+        label.lineBreakMode = .byTruncatingTail
         label.backgroundColor = .systemBackground
         label.layer.cornerRadius = 12
         label.layer.masksToBounds = true
@@ -58,7 +62,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     private lazy var timerLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "00:00"
+        label.text = "03:00"
         label.font = UIFont.monospacedDigitSystemFont(ofSize: 24, weight: .bold)
         label.textColor = .label
         label.textAlignment = .center
@@ -75,6 +79,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         addSoftUIEffect(to: textDisplayLabel)
+    }
+    
+    deinit {
+        timer?.invalidate()
     }
     
     
@@ -121,6 +129,13 @@ private extension ViewController {
     
     
     func startGame() {
+        
+        timer?.invalidate()
+        
+        remainingTime = 180
+        
+        updateTimerLabel()
+        
         let randomText = textGenerate(length: 50)
         
         UIView.transition(with: textDisplayLabel,
@@ -134,6 +149,23 @@ private extension ViewController {
         
         startButton.configuration?.title = "Заново"
         startButton.configuration?.image = UIImage(systemName: "arrow.clockwise")
+        
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+    }
+    @objc func updateTimer() {
+        remainingTime -= 1
+        updateTimerLabel()
+        
+        if remainingTime <= 0 {
+            timer?.invalidate()
+            timerLabel.text = "00:00"
+        }
+    }
+    
+    func updateTimerLabel() {
+        let minutes = remainingTime / 60
+        let seconds = remainingTime % 60
+        timerLabel.text = String(format: "%02d:%02d", minutes, seconds)
     }
     
     func textGenerate(length: Int) -> String {
@@ -167,6 +199,3 @@ private extension ViewController {
         view.layer.insertSublayer(shadowLayer, at: 0)
     }
 }
-
-
-
