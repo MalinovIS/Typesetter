@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class GameViewController: UIViewController {
     
     private var timer: Timer?
     private var remainingTime: Int = 180
@@ -105,7 +105,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UITextFieldDelegate {
+extension GameViewController: UITextFieldDelegate {
     func setupTextInput() {
         textInputField.delegate = self
         textInputField.addTarget(self, action: #selector(textfieldDidChange(_:)), for: .editingChanged)
@@ -125,7 +125,7 @@ extension ViewController: UITextFieldDelegate {
     }
 }
 
-private extension ViewController {
+private extension GameViewController {
     
     func addSubviews() {
         view.backgroundColor = .systemBackground
@@ -252,7 +252,7 @@ private extension ViewController {
     }
     
     func textGenerate(length: Int) -> String {
-        let arrayOfSymbol = "qwertyuiopasdfghjklzxcvbnm"
+        let arrayOfSymbol = "qwertyuiopasdfghjklzxcvbnm ,.!?"
         return String((0..<length).map{ _ in arrayOfSymbol.randomElement()! })
     }
     
