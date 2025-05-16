@@ -14,7 +14,7 @@
 		BF3AF2492DABA5ED00915ACD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF3AF2472DABA5ED00915ACD /* LaunchScreen.storyboard */; };
 		BFA04F1F2DBA13E3008C888E /* GameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA04F1E2DBA13E3008C888E /* GameSession.swift */; };
 		BFA04F212DBA141B008C888E /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA04F202DBA141B008C888E /* GameSettings.swift */; };
-		BFA04F242DBA147E008C888E /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA04F232DBA147E008C888E /* GameView.swift */; };
+		BFA04F242DBA147E008C888E /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA04F232DBA147E008C888E /* GameViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +27,7 @@
 		BF3AF24A2DABA5ED00915ACD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFA04F1E2DBA13E3008C888E /* GameSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSession.swift; sourceTree = "<group>"; };
 		BFA04F202DBA141B008C888E /* GameSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettings.swift; sourceTree = "<group>"; };
-		BFA04F232DBA147E008C888E /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		BFA04F232DBA147E008C888E /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +82,7 @@
 		BFA04F1B2DBA0A71008C888E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				BFA04F232DBA147E008C888E /* GameViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -108,7 +109,6 @@
 			isa = PBXGroup;
 			children = (
 				BF3AF2402DABA5EA00915ACD /* GameViewController.swift */,
-				BFA04F232DBA147E008C888E /* GameView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -187,7 +187,7 @@
 				BF3AF23D2DABA5EA00915ACD /* AppDelegate.swift in Sources */,
 				BFA04F212DBA141B008C888E /* GameSettings.swift in Sources */,
 				BFA04F1F2DBA13E3008C888E /* GameSession.swift in Sources */,
-				BFA04F242DBA147E008C888E /* GameView.swift in Sources */,
+				BFA04F242DBA147E008C888E /* GameViewModel.swift in Sources */,
 				BF3AF23F2DABA5EA00915ACD /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

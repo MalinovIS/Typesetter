@@ -9,11 +9,8 @@ import UIKit
 
 class GameViewController: UIViewController {
     
+    private var viewModel = GameViewModel()
     private var timer: Timer?
-    private var remainingTime: Int = 180
-    private var correctCount = 0
-    private var wrongCount = 0
-    private var currentText = ""
     
     private lazy var instructionLabel: UILabel = {
         let label = UILabel()
@@ -53,7 +50,6 @@ class GameViewController: UIViewController {
         
         let button = UIButton(configuration: config, primaryAction: nil)
         button.translatesAutoresizingMaskIntoConstraints = false
-        
         button.addAction( UIAction { [weak self] _ in
             self?.animateButtonTap(button)
             self?.startGame()
@@ -97,6 +93,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         addSubviews()
         setupConstraints()
+        setupBindings()
         setupTextInput()
     }
     
@@ -113,8 +110,9 @@ extension GameViewController: UITextFieldDelegate {
     
     @objc func textfieldDidChange(_ textField: UITextField) {
         if let text = textField.text, !text.isEmpty {
-            handleTextInput(text)
+            viewModel.handleInput(text)
         }
+        textInputField.text = ""
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -169,24 +167,30 @@ private extension GameViewController {
         ])
     }
     
-    func startGame() {
+    func setupBindings() {
+        viewModel.onStatsUpdate = { [weak self] in
+            self?.updateStatsLabel()
+            self?.textDisplayLabel.text = self?.viewModel.currentText
+        }
         
+        viewModel.onTimeUpdate = { [weak self] in
+            self?.updateTimerLabel()
+        }
+        
+        viewModel.onEndGame = { [weak self] correct, wrong in
+            self?.endGame(correct: correct, wrong: wrong)
+        }
+    }
+    
+    private func startGame() {
         timer?.invalidate()
         
-        remainingTime = 180
-        correctCount = 0
-        wrongCount = 0
-        updateStatsLabel()
-        
-        currentText = textGenerate(length: 50)
-        textDisplayLabel.text = currentText
-        
-        updateTimerLabel()
+        viewModel.startGame()
+        textDisplayLabel.text = viewModel.currentText
         
         timerLabel.isHidden = false
         statsLabel.isHidden = false
         textInputField.isHidden = false
-        
         textInputField.isEnabled = true
         textInputField.becomeFirstResponder()
         
@@ -194,75 +198,41 @@ private extension GameViewController {
         startButton.configuration?.image = UIImage(systemName: "arrow.clockwise")
         
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-        self.view.layoutIfNeeded()
-    }
-    @objc func updateTimer() {
-        remainingTime -= 1
-        updateTimerLabel()
-        
-        if remainingTime <= 0 {
-            endGame()
-        }
     }
     
-    func endGame() {
+    @objc func updateTimer() {
+        viewModel.updateTimer()
+    }
+    
+    func endGame(correct: Int, wrong: Int) {
         timer?.invalidate()
-        textInputField.isEnabled = true
+        textInputField.isEnabled = false
         textInputField.resignFirstResponder()
         
-        let accuracy = correctCount == 0 ? 0 : Double(correctCount) / Double(correctCount + wrongCount) * 100
+        let accuracy = correct == 0 ? 0 : Double(correct) / Double(correct + wrong) * 100
         let alert = UIAlertController(
             title: "Игра окончена",
-            message: String(format: "Правильно: %d\nОшибки: %d\nТочность: %.1f%%", correctCount, wrongCount, accuracy),
+            message: String(format: "Правильно: %d\nОшибки: %d\nТочность: %.1f%%", correct, wrong, accuracy),
             preferredStyle: .alert
         )
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
     }
-    
-    func handleTextInput (_ text: String) {
-        guard !currentText.isEmpty else { return }
-        
-        let firstChar = String(currentText.prefix(1))
-        
-        if text.lowercased() == firstChar.lowercased() {
-            correctCount += 1
-            currentText.removeFirst()
-            textDisplayLabel.text = currentText
-            textInputField.text = ""
-        } else{
-            wrongCount += 1
-            textInputField.text = ""
+    private func updateStatsLabel() {
+            statsLabel.text = "Правильно: \(viewModel.correctCount) | Ошибки: \(viewModel.wrongCount)"
         }
-        updateStatsLabel()
         
-        if currentText.isEmpty {
-            endGame()
+        private func updateTimerLabel() {
+            timerLabel.text = viewModel.formatTime()
         }
-    }
-    
-    func updateStatsLabel() {
-        statsLabel.text = "Правильно: \(correctCount) | Ошибки: \(wrongCount)"
-    }
-    
-    func updateTimerLabel() {
-        let minutes = remainingTime / 60
-        let seconds = remainingTime % 60
-        timerLabel.text = String(format: "%02d:%02d", minutes, seconds)
-    }
-    
-    func textGenerate(length: Int) -> String {
-        let arrayOfSymbol = "qwertyuiopasdfghjklzxcvbnm ,.!?"
-        return String((0..<length).map{ _ in arrayOfSymbol.randomElement()! })
-    }
-    
-    func animateButtonTap(_ button: UIButton) {
-        UIView.animate(withDuration: 0.1, animations: {
-            button.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
-        }) {_ in
-            UIView.animate(withDuration: 0.1) {
-                button.transform = .identity
+        
+        private func animateButtonTap(_ button: UIButton) {
+            UIView.animate(withDuration: 0.1, animations: {
+                button.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+            }) { _ in
+                UIView.animate(withDuration: 0.1) {
+                    button.transform = .identity
+                }
             }
         }
-    }
 }
