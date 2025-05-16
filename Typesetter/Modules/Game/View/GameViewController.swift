@@ -12,6 +12,8 @@ class GameViewController: UIViewController {
     private var viewModel = GameViewModel()
     private var timer: Timer?
     
+    weak var coordinator: GameCoordinator?
+    
     private lazy var instructionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
