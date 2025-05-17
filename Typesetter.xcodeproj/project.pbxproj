@@ -18,6 +18,10 @@
 		BFA04F1F2DBA13E3008C888E /* GameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA04F1E2DBA13E3008C888E /* GameSession.swift */; };
 		BFA04F212DBA141B008C888E /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA04F202DBA141B008C888E /* GameSettings.swift */; };
 		BFA04F242DBA147E008C888E /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA04F232DBA147E008C888E /* GameViewModel.swift */; };
+		BFB6AB962DD8AA4D00C93F6F /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB6AB952DD8AA4D00C93F6F /* RegisterViewModel.swift */; };
+		BFB6AB982DD8AA6200C93F6F /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB6AB972DD8AA6200C93F6F /* RegisterViewController.swift */; };
+		BFB6AB9A2DD8AA6F00C93F6F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB6AB992DD8AA6F00C93F6F /* User.swift */; };
+		BFB6AB9C2DD8B1BF00C93F6F /* RegisterCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB6AB9B2DD8B1BF00C93F6F /* RegisterCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +38,10 @@
 		BFA04F1E2DBA13E3008C888E /* GameSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSession.swift; sourceTree = "<group>"; };
 		BFA04F202DBA141B008C888E /* GameSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettings.swift; sourceTree = "<group>"; };
 		BFA04F232DBA147E008C888E /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		BFB6AB952DD8AA4D00C93F6F /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		BFB6AB972DD8AA6200C93F6F /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		BFB6AB992DD8AA6F00C93F6F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		BFB6AB9B2DD8B1BF00C93F6F /* RegisterCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +90,7 @@
 				BF486B722DD7F2F100F22688 /* AppCoordinator.swift */,
 				BF486B742DD7F32600F22688 /* Coordinator.swift */,
 				BF486B762DD7F38800F22688 /* GameCoordinator.swift */,
+				BFB6AB9B2DD8B1BF00C93F6F /* RegisterCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -106,6 +115,7 @@
 		BFA04F1C2DBA12BF008C888E /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				BFB6AB912DD8A68100C93F6F /* Register */,
 				BF486B712DD7F2CF00F22688 /* Coordinators */,
 				BFA04F1D2DBA1363008C888E /* Game */,
 			);
@@ -128,6 +138,40 @@
 				BF3AF2402DABA5EA00915ACD /* GameViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		BFB6AB912DD8A68100C93F6F /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				BFB6AB942DD8A69600C93F6F /* ViewModel */,
+				BFB6AB932DD8A69100C93F6F /* View */,
+				BFB6AB922DD8A68A00C93F6F /* Model */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		BFB6AB922DD8A68A00C93F6F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BFB6AB992DD8AA6F00C93F6F /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BFB6AB932DD8A69100C93F6F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BFB6AB972DD8AA6200C93F6F /* RegisterViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BFB6AB942DD8A69600C93F6F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BFB6AB952DD8AA4D00C93F6F /* RegisterViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,11 +245,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF486B752DD7F32600F22688 /* Coordinator.swift in Sources */,
+				BFB6AB982DD8AA6200C93F6F /* RegisterViewController.swift in Sources */,
+				BFB6AB9C2DD8B1BF00C93F6F /* RegisterCoordinator.swift in Sources */,
+				BFB6AB962DD8AA4D00C93F6F /* RegisterViewModel.swift in Sources */,
 				BF3AF2412DABA5EA00915ACD /* GameViewController.swift in Sources */,
 				BF3AF23D2DABA5EA00915ACD /* AppDelegate.swift in Sources */,
 				BF486B772DD7F38800F22688 /* GameCoordinator.swift in Sources */,
 				BFA04F212DBA141B008C888E /* GameSettings.swift in Sources */,
 				BFA04F1F2DBA13E3008C888E /* GameSession.swift in Sources */,
+				BFB6AB9A2DD8AA6F00C93F6F /* User.swift in Sources */,
 				BFA04F242DBA147E008C888E /* GameViewModel.swift in Sources */,
 				BF3AF23F2DABA5EA00915ACD /* SceneDelegate.swift in Sources */,
 				BF486B732DD7F2F100F22688 /* AppCoordinator.swift in Sources */,

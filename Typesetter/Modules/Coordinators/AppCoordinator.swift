@@ -14,8 +14,8 @@ class AppCoordinator: Coordinator {
         self.navigationController = navigationController
     }
     func start() {
-        let gameCoodinator = GameCoordinator(navigationController: navigationController)
-        gameCoodinator.start()
+        let registerCoordinator = RegisterCoordinator(navigationController: navigationController)
+        registerCoordinator.start()
     }
     
     
