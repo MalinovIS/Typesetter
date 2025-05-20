@@ -17,6 +17,4 @@ class AppCoordinator: Coordinator {
         let registerCoordinator = RegisterCoordinator(navigationController: navigationController)
         registerCoordinator.start()
     }
-    
-    
 }

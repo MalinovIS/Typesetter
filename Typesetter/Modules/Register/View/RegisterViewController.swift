@@ -16,12 +16,16 @@ class RegisterViewController: UIViewController {
     
     private lazy var usernameField: UITextField = makeTextField(placeholder: "Имя пользователя")
     private lazy var emailField: UITextField = makeTextField(placeholder: "Email", keyboardType: .emailAddress)
-    private lazy var passwordField: UITextField = makeTextField(placeholder: "Пароль", isSecure: true)
+    private lazy var passwordField: UITextField = {
+        let field = makeTextField(placeholder: "Пароль", isSecure: true)
+        field.textContentType = .newPassword
+        return field
+    }()
     
     private lazy var registerButton: UIButton = {
         let button = UIButton(configuration: .filled())
         button.setTitle("Зарегистрироваться", for: .normal)
-        button.setTitleColor(.systemBlue, for: .normal)
+        button.setTitleColor(.white, for: .normal)
         button.addAction(registerAction, for: .touchUpInside)
         return button
     }()
@@ -70,7 +74,13 @@ class RegisterViewController: UIViewController {
         field.keyboardType = keyboardType
         field.autocorrectionType = .no
         field.autocapitalizationType = .none
+        field.textContentType = isSecure ? .password : .username
+        field.returnKeyType = .next
         field.delegate = self
+        
+        field.font = UIFont.preferredFont(forTextStyle: .body)
+        field.adjustsFontForContentSizeCategory = true
+        
         return field
     }
     
@@ -122,4 +132,5 @@ extension RegisterViewController: UITextFieldDelegate {
         }
         return true
     }
+    
 }

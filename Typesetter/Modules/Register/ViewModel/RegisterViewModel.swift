@@ -39,7 +39,7 @@ class RegisterViewModel {
     }
     
     func validateForm() throws {
-        guard !email.isEmpty && password.isEmpty && !username.isEmpty else {
+        guard !email.isEmpty && !password.isEmpty && !username.isEmpty else {
             throw RegistrationError.emptyFields
         }
         

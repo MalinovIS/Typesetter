@@ -19,6 +19,4 @@ class GameCoordinator: Coordinator {
         gameVC.coordinator = self
         navigationController.pushViewController(gameVC, animated: true)
     }
-    
-    
 }
