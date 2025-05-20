@@ -221,20 +221,20 @@ private extension GameViewController {
         present(alert, animated: true)
     }
     private func updateStatsLabel() {
-            statsLabel.text = "Правильно: \(viewModel.correctCount) | Ошибки: \(viewModel.wrongCount)"
-        }
-        
-        private func updateTimerLabel() {
-            timerLabel.text = viewModel.formatTime()
-        }
-        
-        private func animateButtonTap(_ button: UIButton) {
-            UIView.animate(withDuration: 0.1, animations: {
-                button.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
-            }) { _ in
-                UIView.animate(withDuration: 0.1) {
-                    button.transform = .identity
-                }
+        statsLabel.text = "Правильно: \(viewModel.correctCount) | Ошибки: \(viewModel.wrongCount)"
+    }
+    
+    private func updateTimerLabel() {
+        timerLabel.text = viewModel.formatTime()
+    }
+    
+    private func animateButtonTap(_ button: UIButton) {
+        UIView.animate(withDuration: 0.1, animations: {
+            button.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+        }) { _ in
+            UIView.animate(withDuration: 0.1) {
+                button.transform = .identity
             }
         }
+    }
 }
