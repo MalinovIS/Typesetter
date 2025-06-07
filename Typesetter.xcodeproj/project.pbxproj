@@ -8,13 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		BF3AF23D2DABA5EA00915ACD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3AF23C2DABA5EA00915ACD /* AppDelegate.swift */; };
-		BF3AF23F2DABA5EA00915ACD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3AF23E2DABA5EA00915ACD /* SceneDelegate.swift */; };
 		BF3AF2412DABA5EA00915ACD /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3AF2402DABA5EA00915ACD /* GameViewController.swift */; };
 		BF3AF2462DABA5ED00915ACD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF3AF2452DABA5ED00915ACD /* Assets.xcassets */; };
 		BF3AF2492DABA5ED00915ACD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF3AF2472DABA5ED00915ACD /* LaunchScreen.storyboard */; };
 		BF486B732DD7F2F100F22688 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF486B722DD7F2F100F22688 /* AppCoordinator.swift */; };
 		BF486B752DD7F32600F22688 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF486B742DD7F32600F22688 /* Coordinator.swift */; };
-		BF65E8892DE0E9C000651C21 /* ModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF65E8882DE0E9C000651C21 /* ModuleFactory.swift */; };
 		BF9A701A2DDCFF2F001B93AC /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9A70192DDCFF2F001B93AC /* LoginViewModel.swift */; };
 		BF9A701C2DDCFF9A001B93AC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9A701B2DDCFF9A001B93AC /* LoginViewController.swift */; };
 		BFA04F1F2DBA13E3008C888E /* GameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA04F1E2DBA13E3008C888E /* GameSession.swift */; };
@@ -28,14 +26,12 @@
 /* Begin PBXFileReference section */
 		BF3AF2392DABA5EA00915ACD /* Typesetter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Typesetter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF3AF23C2DABA5EA00915ACD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BF3AF23E2DABA5EA00915ACD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		BF3AF2402DABA5EA00915ACD /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		BF3AF2452DABA5ED00915ACD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BF3AF2482DABA5ED00915ACD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BF3AF24A2DABA5ED00915ACD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF486B722DD7F2F100F22688 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		BF486B742DD7F32600F22688 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
-		BF65E8882DE0E9C000651C21 /* ModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFactory.swift; sourceTree = "<group>"; };
 		BF9A70192DDCFF2F001B93AC /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		BF9A701B2DDCFF9A001B93AC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BFA04F1E2DBA13E3008C888E /* GameSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSession.swift; sourceTree = "<group>"; };
@@ -78,7 +74,6 @@
 			children = (
 				BFA04F1C2DBA12BF008C888E /* Modules */,
 				BF3AF23C2DABA5EA00915ACD /* AppDelegate.swift */,
-				BF3AF23E2DABA5EA00915ACD /* SceneDelegate.swift */,
 				BF3AF2452DABA5ED00915ACD /* Assets.xcassets */,
 				BF3AF2472DABA5ED00915ACD /* LaunchScreen.storyboard */,
 				BF3AF24A2DABA5ED00915ACD /* Info.plist */,
@@ -92,14 +87,6 @@
 				BF486B722DD7F2F100F22688 /* AppCoordinator.swift */,
 			);
 			path = Coordinators;
-			sourceTree = "<group>";
-		};
-		BF65E8872DE0E98A00651C21 /* Factories */ = {
-			isa = PBXGroup;
-			children = (
-				BF65E8882DE0E9C000651C21 /* ModuleFactory.swift */,
-			);
-			path = Factories;
 			sourceTree = "<group>";
 		};
 		BF9A70152DDCFE95001B93AC /* Login */ = {
@@ -156,7 +143,6 @@
 			isa = PBXGroup;
 			children = (
 				BFAFA4F22DE7792C00571902 /* Base */,
-				BF65E8872DE0E98A00651C21 /* Factories */,
 				BF9A70152DDCFE95001B93AC /* Login */,
 				BFB6AB912DD8A68100C93F6F /* Register */,
 				BF486B712DD7F2CF00F22688 /* Coordinators */,
@@ -305,9 +291,7 @@
 				BFA04F212DBA141B008C888E /* GameSettings.swift in Sources */,
 				BFA04F1F2DBA13E3008C888E /* GameSession.swift in Sources */,
 				BFB6AB9A2DD8AA6F00C93F6F /* User.swift in Sources */,
-				BF65E8892DE0E9C000651C21 /* ModuleFactory.swift in Sources */,
 				BFA04F242DBA147E008C888E /* GameViewModel.swift in Sources */,
-				BF3AF23F2DABA5EA00915ACD /* SceneDelegate.swift in Sources */,
 				BF486B732DD7F2F100F22688 /* AppCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -14,7 +14,26 @@ class AppCoordinator: Coordinator {
         self.navigationController = navigationController
     }
     func start() {
-        let registerCoordinator = RegisterCoordinator(navigationController: navigationController)
-        registerCoordinator.start()
+        let viewController = LoginViewController()
+        viewController.coordinator = self
+        navigationController.pushViewController(viewController, animated: false)
+    }
+    
+    func showLogin() {
+        let viewController = LoginViewController()
+        viewController.coordinator = self
+        navigationController.pushViewController(viewController, animated: false)
+    }
+    
+    func showRegister() {
+        let viewController = RegisterViewController()
+        viewController.coordinator = self
+        navigationController.pushViewController(viewController, animated: false)
+    }
+    
+    func showGame() {
+        let viewController = GameViewController()
+        viewController.coordinator = self
+        navigationController.pushViewController(viewController, animated: false)
     }
 }

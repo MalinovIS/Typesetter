@@ -101,17 +101,6 @@ class RegisterViewController: UIViewController {
     @objc private func goBackToLogin() {
         coordinator?.showLogin()
     }
-//    private lazy var loginAction = UIAction { [weak self] _ in
-//        guard let self = self else { return }
-//        
-//        guard let coordinator = self.coordinator else {
-//            print("❌ Coordinator равен nil!")
-//            return
-//        }
-//        
-//        print("📎 Coordinator существует, вызываем showLogin()")
-//        coordinator.showLogin()
-//    }
     
     private func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
