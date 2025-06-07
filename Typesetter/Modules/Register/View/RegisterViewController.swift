@@ -12,7 +12,7 @@ class RegisterViewController: UIViewController {
     
     private let viewModel = RegisterViewModel()
     
-    weak var coordinator: RegisterCoordinator?
+    weak var coordinator: AppCoordinator?
     
     private lazy var usernameField: UITextField = makeTextField(placeholder: "Имя пользователя")
     private lazy var emailField: UITextField = makeTextField(placeholder: "Email", keyboardType: .emailAddress)
@@ -26,7 +26,6 @@ class RegisterViewController: UIViewController {
         let button = UIButton(configuration: .filled())
         button.setTitle("Зарегистрироваться", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.addAction(registerAction, for: .touchUpInside)
         return button
     }()
     
@@ -34,13 +33,14 @@ class RegisterViewController: UIViewController {
         let button = UIButton()
         button.setTitle("Уже есть аккаунт? Войти", for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
-        button.addAction(loginAction, for: .touchUpInside)
         return button
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        registerButton.addTarget(self, action: #selector(registerTapped), for: .touchUpInside)
+        loginButton.addTarget(self, action: #selector(goBackToLogin), for: .touchUpInside)
     }
     
     private func setupUI() {
@@ -84,35 +84,34 @@ class RegisterViewController: UIViewController {
         return field
     }
     
-    private lazy var registerAction = UIAction { [weak self] _ in
-        guard let self = self else { return }
-        
-        self.viewModel.email = self.emailField.text ?? ""
-        self.viewModel.password = self.passwordField.text ?? ""
-        self.viewModel.username = self.usernameField.text ?? ""
-        
-        do {
-            try self.viewModel.validateForm()
-            // Здесь вызов сервиса регистрации через Firebase
-            print("Форма валидна")
-            self.coordinator?.registerSuccessful()
-        } catch RegisterViewModel.RegistrationError.emptyFields {
-            self.showAlert(title: "Ошибка", message: "Все поля должны быть заполнены")
-        } catch RegisterViewModel.RegistrationError.invalidEmail {
-            self.showAlert(title: "Ошибка", message: "Некорректный email")
-        } catch RegisterViewModel.RegistrationError.invalidPassword {
-            self.showAlert(title: "Ошибка", message: "Пароль должен быть не менее 6 символов")
-        } catch RegisterViewModel.RegistrationError.invalidUsername {
-            self.showAlert(title: "Ошибка", message: "Имя должно быть не менее 3 символов")
-        } catch {
-            self.showAlert(title: "Ошибка", message: "Неизвестная ошибка")
+    @objc private func registerTapped() {
+        guard let username = usernameField.text, !username.isEmpty,
+              let email = emailField.text, !email.isEmpty,
+              let password = passwordField.text, !password.isEmpty
+        else {
+            showAlert(title: "Ошибка", message: "Заполните все поля")
+            return
         }
-    }
-    
-    private lazy var loginAction = UIAction { [weak self] _ in
-        guard let self = self else { return }
+
+        // Заглушка успешной регистрации
+        showAlert(title: "Успех", message: "Регистрация прошла успешно")
         coordinator?.showLogin()
     }
+
+    @objc private func goBackToLogin() {
+        coordinator?.showLogin()
+    }
+//    private lazy var loginAction = UIAction { [weak self] _ in
+//        guard let self = self else { return }
+//        
+//        guard let coordinator = self.coordinator else {
+//            print("❌ Coordinator равен nil!")
+//            return
+//        }
+//        
+//        print("📎 Coordinator существует, вызываем showLogin()")
+//        coordinator.showLogin()
+//    }
     
     private func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)

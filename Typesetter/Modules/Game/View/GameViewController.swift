@@ -12,7 +12,7 @@ class GameViewController: UIViewController {
     private var viewModel = GameViewModel()
     private var timer: Timer?
     
-    weak var coordinator: GameCoordinator?
+    weak var coordinator: AppCoordinator?
     
     private lazy var instructionLabel: UILabel = {
         let label = UILabel()
